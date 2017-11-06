@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -17,13 +18,14 @@ var (
 )
 
 func main() {
-	err := checkEnvs()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	http.Handle("/", http.FileServer(http.Dir("./public")))
+	// err := checkEnvs()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	fs := http.FileServer(http.Dir("public"))
+	http.Handle("/", fs)
+	log.Println(": serving the files... check port 3000")
 	http.ListenAndServe(":3000", nil)
 }
 

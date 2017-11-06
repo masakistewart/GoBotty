@@ -5,30 +5,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//cdn.muicss.com/mui-0.9.28/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <script src="//cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.muicss.com/mui-0.9.28/css/mui.min.css" type="text/css" />
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <div class="mui-appbar">
-        
-    </div>
-    <div class="mui-container-fluid">
-        <form class="mui-form">
-            <legend>Title</legend>
-            <div class="mui-textfield">
-                <input type="text" placeholder="Input 1">
-            </div>
-            <div class="mui-textfield">
-                <input type="text" placeholder="Input 2">
-            </div>
-            <div class="mui-textfield">
-                <textarea placeholder="Textarea"></textarea>
-            </div>
-            <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
-        </form>
+    <div class="navbar mui-appbar">
+
     </div>
 
+    <div class="mui-container-fluid">
+        <div class="login-form-panel">
+            <form class="login-form mui-form mui-panel">
+                <legend>Login to Discord <small>with go</small> !</legend>
+                <div class="mui-textfield">
+                    <input id="email" type="email" placeholder="email">
+                </div>
+
+                <div class="mui-textfield">
+                    <input id="password" type="password" placeholder="email">
+                </div>
+
+                <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="//cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script>
 </body>
 
 </html>
