@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"./discordApi"
 )
 
 type loginStruct struct {
@@ -29,7 +31,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 				http.StatusInternalServerError)
 		}
 		results = append(results, string(body))
-
+		discordApi.CheckEnvs()
 		fmt.Fprint(w, "POST done")
 	} else {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)

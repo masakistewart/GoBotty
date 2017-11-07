@@ -1,4 +1,4 @@
-package myDiscordAPI
+package discordApi
 
 import (
 	"errors"
@@ -31,7 +31,7 @@ func GetToken() {
 }
 
 // CheckEnvs for environment (env) variables
-func checkEnvs() error {
+func CheckEnvs() error {
 	Email = os.Getenv("DISCORDEMAIL")
 	Password = os.Getenv("DISCORDPASS")
 
