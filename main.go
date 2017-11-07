@@ -2,20 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
-
-	"github.com/bwmarrin/discordgo"
-)
-
-// Variables for login
-var (
-	Email    string
-	Password string
-	Token    string
 )
 
 type loginStruct struct {
@@ -53,32 +42,4 @@ func resultsHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error converting response to json", http.StatusTeapot)
 	}
 	w.Write(jsonBody)
-}
-
-// checks for environment (env) variables
-func checkEnvs() error {
-	Email = os.Getenv("DISCORDEMAIL")
-	Password = os.Getenv("DISCORDPASS")
-
-	if Email == "" || Password == "" {
-		return errors.New("Please add your discord email and password")
-	}
-
-	// the os can set an env
-	os.Setenv("DISCORDTOKEN", Token)
-	fmt.Println("Checking login information")
-	return nil
-}
-
-func getToken() {
-
-	dg, err := discordgo.New(Email, Password)
-	if err != nil {
-		fmt.Println("Error while creating discord session:", err)
-		return
-	}
-
-	Token := dg.Token
-
-	fmt.Printf("Your Authentication Token is:\n\n%s\n", Token)
 }
