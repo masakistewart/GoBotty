@@ -17,6 +17,8 @@ var (
 	Password string
 	// Token for discord authentication
 	Token string
+	// apiURL for latest discord api version
+	apiURL string
 )
 
 // GetToken gets token from discord
@@ -37,6 +39,7 @@ func GetToken(credentials struct {
 
 // CheckEnvs for environment (env) variables
 func CheckEnvs() error {
+	apiURL = "https://discordapp.com/api/v6"
 	Email = os.Getenv("DISCORDEMAIL")
 	Password = os.Getenv("DISCORDPASS")
 
@@ -58,6 +61,20 @@ func checkToken() bool {
 	return true
 }
 
-func getMe() {
-	http.Get("https://discordapp.com/api/v6/users/s1ler")
+func GetMe() {
+	userEndPoint := "/users/s1ler"
+	query := fmt.Sprintf("%s%s", apiURL, userEndPoint)
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", query, nil)
+	if err != nil {
+		log.Println(err)
+	}
+	authString := fmt.Sprintf("Bearer %s", os.Getenv("DISCORDTOKEN"))
+	req.Header.Add("Authorization", authString)
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println(err)
+	}
+	log.Println(resp)
+	defer resp.Body.Close()
 }
