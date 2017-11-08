@@ -3,6 +3,8 @@ package discordApi
 import (
 	"errors"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 
 	"github.com/bwmarrin/discordgo"
@@ -43,4 +45,16 @@ func CheckEnvs() error {
 	os.Setenv("DISCORDTOKEN", Token)
 	fmt.Println("Checking login information")
 	return nil
+}
+
+func checkToken() bool {
+	if os.Getenv("DISCORDTOKEN") != "" {
+		log.Println("No Token Found")
+		return false
+	}
+	return true
+}
+
+func getMe() {
+	http.Get("https://discordapp.com/api/v6/users/s1ler")
 }
