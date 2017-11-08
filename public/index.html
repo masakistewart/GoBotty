@@ -6,26 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//cdn.muicss.com/mui-0.9.28/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <script src="//cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script>
-    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <div id="login-form"  class="mui-container-fluid">
-        <form class="mui-form">
-            <legend>Login</legend>
-            <div class="mui-textfield">
-                <input id="email" type="email" name="email" placeholder="Input 1">
-            </div>
-            <div class="mui-textfield">
-                <input id="password" name="email" type="password" placeholder="Input 2">
-            </div>
-            <button id="submitButton" type="submit" name="email" class="mui-btn mui-btn--raised">Submit</button>
-        </form>
+    <div class="navbar mui-appbar">
+        <div class="mui-container"></div>
+    </div>
+    <div id="login-form" class="mui-container">
+        <div class="mui-panel">
+            <form class="mui-form">
+                <legend>Login <small>with discord</small></legend>
+                <div class="mui-textfield">
+                    <input id="email" type="email" name="email" placeholder="email">
+                </div>
+                <div class="mui-textfield">
+                    <input id="password" name="password" type="password" placeholder="password">
+                </div>
+                <button id="submitButton" type="submit" name="email" class="mui-btn mui-btn--raised">Submit</button>
+            </form>
+        </div>
     </div>
 
 
     <script src="//cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
