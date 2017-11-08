@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/bwmarrin/discordgo"
+	. "github.com/masakistewart/GoBotty/models"
 )
 
 var (
@@ -22,18 +23,22 @@ var (
 )
 
 // GetToken gets token from discord
-func GetToken(credentials struct {
-	Email    string
-	Password string
-}) {
+func GetToken(Credentials struct) {
+
+	Token = os.Getenv("DISCORD_TOKEN")
+
+	if checkToken() {
+		return
+	}
+
 	dg, err := discordgo.New(credentials.Email, credentials.Password)
 	if err != nil {
 		fmt.Println("Error while creating discord session:", err)
 		return
 	}
 
-	Token := dg.Token
-
+	Token = dg.Token
+	os.Setenv("DISCORD_TOKEN", Token)
 	fmt.Printf("Your Authentication Token is:\n\n%s\n", Token)
 }
 
@@ -48,13 +53,13 @@ func CheckEnvs() error {
 	}
 
 	// the os can set an env
-	os.Setenv("DISCORDTOKEN", Token)
+	os.Setenv("DISCORD_TOKEN", Token)
 	fmt.Println("Checking login information")
 	return nil
 }
 
 func checkToken() bool {
-	if os.Getenv("DISCORDTOKEN") != "" {
+	if os.Getenv("DISCORD_TOKEN") == "" {
 		log.Println("No Token Found")
 		return false
 	}
@@ -62,8 +67,13 @@ func checkToken() bool {
 }
 
 func GetMe() {
-	userEndPoint := "/users/s1ler"
-	query := fmt.Sprintf("%s%s", apiURL, userEndPoint)
+	if checkToken() == false {
+		return
+	}
+	apiURL = os.Getenv("DISCORD_API_URL")
+	userEndPoint := os.Getenv("DISCORD_USER_ENDPOINT")
+	query := fmt.Sprintf("%s%s/@me", apiURL, userEndPoint)
+	fmt.Println(query)
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", query, nil)
 	if err != nil {

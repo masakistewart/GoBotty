@@ -4,16 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"../discordApi"
+	"github.com/masakistewart/GoBotty/discordApi"
+	"github.com/masakistewart/GoBotty/models"
 )
 
-type Credentials struct {
-	Email    string
-	Password string
-}
-
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	var cred Credentials
+	var cred models.Credentials
 	if r.Body == nil {
 		http.Error(w, "Please send something in the json, Im lonely :(", 400)
 		return
@@ -26,4 +22,5 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	discordApi.GetToken(cred)
+	w.WriteHeader(http.StatusOK)
 }
