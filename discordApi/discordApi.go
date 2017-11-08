@@ -20,8 +20,11 @@ var (
 )
 
 // GetToken gets token from discord
-func GetToken() {
-	dg, err := discordgo.New(Email, Password)
+func GetToken(credentials struct {
+	Email    string
+	Password string
+}) {
+	dg, err := discordgo.New(credentials.Email, credentials.Password)
 	if err != nil {
 		fmt.Println("Error while creating discord session:", err)
 		return
