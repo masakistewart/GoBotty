@@ -5,10 +5,14 @@ import (
 	"net/http"
 )
 
+type placeHolderError struct {
+	Message string
+}
+
 func ResultsHandler(w http.ResponseWriter, r *http.Request) {
-	jsonBody, err := json.Marshal(results)
-	if err != nil {
-		http.Error(w, "Error converting response to json", http.StatusTeapot)
-	}
-	w.Write(jsonBody)
+	err := placeHolderError{Message: "Sorry for the inconveniance but this route is currently down :("}
+	w.Header()
+	w.WriteHeader(http.StatusGone)
+	json.NewEncoder(w).Encode(err)
+	return
 }
