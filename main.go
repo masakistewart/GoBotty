@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"./discordApi"
+	"github.com/masakistewart/GoBotty/discordApi"
 )
 
 type loginStruct struct {
