@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("public")))
+	http.Handle("/", http.FileServer(http.Dir("./public")))
 	http.HandleFunc("/login", handlers.LoginHandler)
 	http.HandleFunc("/results", handlers.ResultsHandler)
-	http.ListenAndServe(":3030", nil)
+	http.ListenAndServe(":8080", nil)
 }
