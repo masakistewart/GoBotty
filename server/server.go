@@ -22,7 +22,7 @@ func StartServer() {
 	r.Handle("GET", "/users", handlers.Users)
 	r.Handle("GET", "/users/:id", handlers.User)
 	r.Handle("GET", "/test", handlers.Test)
+	
+	logging.Info.Println("Started the server on Port 8080")
 	http.ListenAndServe(":8080", r)
-
-	logging.Trace.Println("Started the server on Port 8080")
 }
