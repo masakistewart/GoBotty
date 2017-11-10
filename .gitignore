@@ -1,3 +1,4 @@
 GoBotty
 .vscode
 node_modules
+yarn*
