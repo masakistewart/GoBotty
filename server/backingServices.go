@@ -6,16 +6,19 @@ import (
 	"strconv"
 )
 
+// UserCredentials are for login/cookie info
 type UserCredentials struct {
 	Email    string
 	Password string
 }
 
+// EndPoints are the endpoint for an API
 type EndPoints struct {
 	BaseURL string
 	UsersEP string
 }
 
+// Client holds API credentials
 type Client struct {
 	ID        int
 	Secret    string

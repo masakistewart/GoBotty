@@ -7,20 +7,22 @@ import (
 
 	"github.com/masakistewart/GoBotty/handlers"
 	"github.com/masakistewart/GoBotty/router"
-	. "github.com/masakistewart/GoBotty/logging"
+	"github.com/masakistewart/GoBotty/logging"
 )
 
+// StartServer starts the server and initializes the rest of the app
 func StartServer() {
 	// backingService holds all the variables needed in other parts of the app
 	// backingService := setup()
 
-	Init(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+	logging.Init(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
 	r := router.New(handlers.Root)
 
 	r.Handle("GET", "/", handlers.Root)
 	r.Handle("GET", "/users", handlers.Users)
 	r.Handle("GET", "/users/:id", handlers.User)
+	r.Handle("GET", "/test", handlers.Test)
 	http.ListenAndServe(":8080", r)
 
-	Trace.Println("Started the server on Port 8080")
+	logging.Trace.Println("Started the server on Port 8080")
 }
