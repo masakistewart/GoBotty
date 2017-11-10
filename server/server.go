@@ -14,7 +14,7 @@ import (
 func StartServer() {
 	// backingService holds all the variables needed in other parts of the app
 	// backingService := setup()
-
+	PORT := ":8080"
 	logging.Init(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
 	r := router.New(handlers.Root)
 
@@ -23,6 +23,6 @@ func StartServer() {
 	r.Handle("GET", "/users/:id", handlers.User)
 	r.Handle("GET", "/test", handlers.Test)
 	
-	logging.Info.Println("Started the server on Port 8080")
-	http.ListenAndServe(":8080", r)
+	logging.Info.Printf("Started the server on Port %s", PORT)
+	http.ListenAndServe(PORT, r)
 }
