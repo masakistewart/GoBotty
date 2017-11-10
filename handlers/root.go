@@ -4,5 +4,7 @@ import "net/http"
 import "net/url"
 
 func Root(w http.ResponseWriter, r *http.Request, params url.Values) {
-	
+	// fs := http.FileServer(http.Dir("public"))
+
+
 }

@@ -1,9 +1,11 @@
 package router
 
 import (
+	"github.com/masakistewart/GoBotty/logging"
 	"net/http"
 	"net/url"
 	"strings"
+	"io/ioutil"
 )
 
 type Handle func(http.ResponseWriter, *http.Request, url.Values)
@@ -32,17 +34,31 @@ func (r *Router) Handle(method, path string, hanlder Handle) {
 	r.tree.addNode(method, path, hanlder)
 }
 
-func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	req.ParseForm()
-	params := req.Form
-	node, _ := r.tree.traverse(strings.Split(req.URL.Path, "/")[1:], params)
+func (this *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    path := r.URL.Path[1:]
+    logging.Info.Printf(path)
 
-	if handler := node.methods[req.Method]; handler != nil {
-		handler(w, req, params)
-	} else {
-		r.rootHandler(w, req, params)
-	}
+    data, err := ioutil.ReadFile(string(path))
+
+    if err == nil {
+        w.Write(data)
+    } else {
+        w.WriteHeader(404)
+        w.Write([]byte("404 Something went wrong - " + http.StatusText(404)))
+    }
 }
+
+// func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+// 	req.ParseForm()
+// 	params := req.Form
+// 	node, _ := r.tree.traverse(strings.Split(req.URL.Path, "/")[1:], params)
+
+// 	if handler := node.methods[req.Method]; handler != nil {
+// 		handler(w, req, params)
+// 	} else {
+// 		r.rootHandler(w, req, params)
+// 	}
+// }
 
 func (n *node) addNode(method, path string, handler Handle) {
 	components := strings.Split(path, "/")[1:]
