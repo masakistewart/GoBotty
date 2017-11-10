@@ -1,14 +1,12 @@
 package handlers
 
 import (
-	"log"
 	"net/http"
-	"os"
-
-	"github.com/masakistewart/GoBotty/discordApi"
+	"net/url"
 )
 
-func Test(w http.ResponseWriter, r *http.Request) {
-	log.Println(os.Getenv("DISCORD_TOKEN"))
-	discordApi.GetMe()
+func Test(w http.ResponseWriter, r *http.Request, params url.Values) {
+	// log.Println(os.Getenv("DISCORD_TOKEN"))
+	// discordApi.GetMe()
+
 }
