@@ -1,24 +1,22 @@
-import React, { Component } from 'react'
-import '../css/App.css'
-import LoginForm from "./LoginForm"
-import Navbar from "./Navbar";
 import { MuiThemeProvider } from "material-ui/styles"
-import getFormValues from "../reducers"
-import { connect } from "react-redux";
+import React, { Component } from 'react'
 
-const Body = () => {
+import Login from "./Login"
+import Navbar from "./Navbar";
+import '../css/App.css'
+
+const Body = (props) => {
   return [
-    <Navbar key={1}/>,
-    <LoginForm key={2}/>
+    <Navbar key={1} {...props}/>,
+    props.toggleLoginForm ? <Login {...props} key={2}/> : null
   ]
 }
 
 class App extends Component {
-
   render() {
     return (
       <MuiThemeProvider>
-        <Body />
+        <Body {...this.props} />
       </MuiThemeProvider>
     )
   }

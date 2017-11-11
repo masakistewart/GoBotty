@@ -1,8 +1,4 @@
-export const GET_FORM_VALUES = "GET_FORM_VALUES"
-export const SEND_LOGIN_INFO = "SEND_LOGIN_INFO"
-export const DISABLE_BUTTON = "DISABLE_BUTTON"
-
-export function getFormValues(formValues) {
-    debugger
-    return { type: GET_FORM_VALUES, state: formValues}
-}
+export const HANDLE_SUBMIT = "HANDLE_SUBMIT"
+export const TOGGLE_FORM = "TOGGLE_FORM"
+export const EMAIL_CHANGE = 'EMAIL_CHANGE'
+export const PASSWORD_CHANGE = 'PASSWORD_CHANGE'

@@ -27,5 +27,5 @@ func StartServer() {
 	thing := cors.Default().Handler(r)
 
 	logging.Info.Printf("Started the server on Port %s", PORT)
-	http.ListenAndServe(PORT, r)
+	http.ListenAndServe(PORT, thing)
 }
