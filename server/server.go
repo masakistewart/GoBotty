@@ -8,6 +8,7 @@ import (
 	"github.com/masakistewart/GoBotty/handlers"
 	"github.com/masakistewart/GoBotty/router"
 	"github.com/masakistewart/GoBotty/logging"
+	"github.com/rs/cors"
 )
 
 // StartServer starts the server and initializes the rest of the app
@@ -21,8 +22,10 @@ func StartServer() {
 	r.Handle("GET", "/", handlers.Root)
 	r.Handle("GET", "/users", handlers.Users)
 	r.Handle("GET", "/users/:id", handlers.User)
-	r.Handle("GET", "/test", handlers.Test)
+	r.Handle("POST", "/test", handlers.Test)
 	
+	thing := cors.Default().Handler(r)
+
 	logging.Info.Printf("Started the server on Port %s", PORT)
 	http.ListenAndServe(PORT, r)
 }
