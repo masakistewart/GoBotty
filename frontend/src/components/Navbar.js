@@ -47,8 +47,7 @@ class AppBarExampleComposition extends Component {
         return (
             <div>
                 <AppBar
-                    title="PWP PC LABS"
-                    className="navbar"
+                    title="PWP"
                     iconElementRight={!this.props.toggleLogin ? <Login toggleLoginForm={this.props.toggleLoginForm} /> : <Logged  />}
                 />
             </div>

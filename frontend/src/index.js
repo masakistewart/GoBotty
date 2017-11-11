@@ -10,7 +10,7 @@ const emailChangeHanlder = (val) => store.dispatch({ type: 'EMAIL_CHANGE', paylo
 const passwordChangeHanlder = (val) => store.dispatch({ type: 'PASSWORD_CHANGE', payload: val })
 const toggleLoginForm = () => { 
     debugger; 
-    store.dispatch({type: 'TOGGLE_FORM'}) }
+    store.dispatch({type: 'TOGGLE_LOGIN'}) }
 
 const render = () => {
     const state = store.getState()
