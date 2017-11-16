@@ -1,15 +1,14 @@
 import { MuiThemeProvider } from "material-ui/styles"
 import React, { Component } from 'react'
 
-import Login from "./Login"
-import Navbar from "./Navbar";
-import Signup from './Signup'
+import Form from "./Form"
+import Navbar from "./Navbar"
 import '../css/App.css'
 
 const Body = (props) => {
   return [
     <Navbar key={1} {...props}/>,
-    props.toggleLogin ? <Login {...props} key={2}/> : <Signup />
+    <Form {...props} key={2}/>
   ]
 }
 

@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import actionTypes  from './actions'
 
 const initState = {
     email: "",
@@ -8,12 +8,13 @@ const initState = {
 }
 
 export default (state = initState, action) => {
+    debugger
     switch (action.type) {
-        case actions.EMAIL_CHANGE:
+        case actionTypes.EMAIL_CHANGE:
             return {...state, login: state.email.concat(action.payload)}
-        case actions.PASSWORD_CHANGE:
+        case actionTypes.PASSWORD_CHANGE:
             return {...state, login: state.password.concat(action.payload)}
-        case actions.TOGGLE_FORM:
+        case actionTypes.TOGGLE_FORM:
             return {...state, toggleLogin: !state.toggleLogin}
         default:
            return state

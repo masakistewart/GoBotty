@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 
 
-class Login extends Component {
+class Form extends Component {
 
     sendLoginInfo(formValues) {
         fetch("http://localhost:8080/test", {
@@ -27,11 +27,11 @@ class Login extends Component {
     
     
     render() {
-        console.log(this.props)
         let email, password
         return (
             <div className="container-center" >
                 <Paper style={style} zDepth={1}>
+                    <p>{this.props.toggleForm ? "Signup" : "Login"}</p>
                     <div>
                         <TextField style={textStyle} onChange={this.onChangeEmailHandler} type="email" floatingLabelText="Email" hintText="Email Field" />
                     </div>
@@ -64,6 +64,6 @@ const buttonStyle = {
 }
 
 
-export default Login
+export default Form
 
 

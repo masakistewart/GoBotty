@@ -13,9 +13,8 @@ class Login extends Component {
     static muiName = 'FlatButton';
 
     render() {
-        console.log(this.props)
         return (
-            <FlatButton style={this.props.style} onClick={this.props.toggleLoginForm} label="Login" />
+            <FlatButton style={this.props.style} onClick={this.props.toggleLoginForm} label={this.props.toggleLogin ? "Login" : "Signup"} />
         );
     }
 }
@@ -37,18 +36,19 @@ const Logged = (props) => (
 
 Logged.muiName = 'IconMenu';
 
-/**
- * This example is taking advantage of the composability of the `AppBar`
- * to render different components depending on the application state.
- */
 class AppBarExampleComposition extends Component {
     render() {
-        console.log(this.props.toggleLoginForm)
         return (
             <div>
                 <AppBar
                     title="PWP"
-                    iconElementRight={!this.props.toggleLogin ? <Login toggleLoginForm={this.props.toggleLoginForm} /> : <Logged  />}
+                    iconElementRight={
+                        <Login
+                            style={this.props.style}
+                            toggleLoginForm={this.props.toggleLoginForm}
+                            toggleLogin={this.props.toggleLogin}
+                        />
+                    }
                 />
             </div>
         );
